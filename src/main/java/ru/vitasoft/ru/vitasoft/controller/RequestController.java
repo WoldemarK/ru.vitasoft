@@ -11,24 +11,20 @@ import ru.vitasoft.ru.vitasoft.service.RequestService;
 @RequiredArgsConstructor
 public class RequestController implements RequestControllerApi {
     private final RequestService requestService;
-
     @Override
     public ResponseEntity<RequestDto> createRequest(RequestDto requestDto) {
         return ResponseEntity.ok(requestService.createRequest(requestDto));
     }
-
     @Override
     public RequestDto viewingApplications(Long id) {
         return requestService.viewingApplications(id);
     }
-
     @Override
     public ResponseEntity<RequestDto> update(RequestDto requestDto) {
-        return null;
+        return ResponseEntity.ok(requestService.update(requestDto));
     }
-
     @Override
     public ResponseEntity<RequestDto> submitForReviewRequest(Long id) {
-        return null;
+        return ResponseEntity.ok(requestService.submitForReviewRequest(id));
     }
 }

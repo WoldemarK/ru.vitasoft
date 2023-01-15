@@ -6,6 +6,7 @@ import ru.vitasoft.ru.vitasoft.dto.RequestDto;
 import ru.vitasoft.ru.vitasoft.exception.AllException;
 import ru.vitasoft.ru.vitasoft.mapper.RequestMapper;
 import ru.vitasoft.ru.vitasoft.model.Request;
+import ru.vitasoft.ru.vitasoft.model.StatusRequest;
 import ru.vitasoft.ru.vitasoft.repository.RequestRepository;
 import ru.vitasoft.ru.vitasoft.repository.UserRepository;
 
@@ -26,30 +27,31 @@ public class RequestService {
         request = requestRepository.save(request);
         return requestMapper.convertToRequestDto(request);
     }
+
     public RequestDto viewingApplications(Long id) {
         List<RequestDto> list = requestRepository.findByUser(userRepository.findById(id).get());
-        return list.stream().findAny().orElseThrow(()->new AllException(""));
+        return list.stream().findAny().orElseThrow(() -> new AllException(""));
 
     }
-//
-//    public RequestDto update(RequestDto requestDto) {
-//        if (requestDto.getStatus() == Status.DRAFT) {
-//            Request request = requestMapper.convertToRequest(requestDto);
-//            request = requestRepository.save(request);
-//            requestMapper.updateFromDto(requestDto, request);
-//        }
-//        return requestDto;
-//    }
-//
-//    public RequestDto submitForReviewRequest(Long id) {
-//        Request request = requestRepository.findById(id)
-//                .orElseThrow(() -> new AllException("submitForReviewRequest"));
-//        if (!(request == null)) {
-//            request.setStatus(Status.SENT);
-//            request = requestRepository.save(request);
-//        }
-//        return requestMapper.convertToRequestDto(request);
-//    }
+
+    public RequestDto update(RequestDto requestDto) {
+        if (requestDto.getStatusRequest() == StatusRequest.DRAFT) {
+            Request request = requestMapper.convertToRequest(requestDto);
+            request = requestRepository.save(request);
+            requestMapper.updateFromDto(requestDto, request);
+        }
+        return requestDto;
+    }
+
+    public RequestDto submitForReviewRequest(Long id) {
+        Request request = requestRepository.findById(id)
+                .orElseThrow(() -> new AllException("submitForReviewRequest"));
+        if (!(request == null)) {
+            request.setStatusRequest(StatusRequest.SENT);
+            request = requestRepository.save(request);
+        }
+        return requestMapper.convertToRequestDto(request);
+    }
 //
 //    public RequestDto getAllRequestStatus() {
 //        List<Request> request = requestRepository.findAllByStatus(Status.SENT);

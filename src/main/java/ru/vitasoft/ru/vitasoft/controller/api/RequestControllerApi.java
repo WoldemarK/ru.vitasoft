@@ -16,17 +16,17 @@ public interface RequestControllerApi {
     ResponseEntity<RequestDto> createRequest(@RequestBody RequestDto requestDto);
 
     @GetMapping("/{id}")
-     @PreAuthorize("hasAuthority('user:read')")
+    @PreAuthorize("hasAuthority('user:read')")
     @Operation(summary = "Пользователь ", description = "Просмотр всех им созданных заявок.")
     RequestDto viewingApplications(@PathVariable("id") Long id);
 
     @PostMapping("/update")
-    // @PreAuthorize("hasAuthority('user:write')")
+    @PreAuthorize("hasAuthority('user:update')")
     @Operation(summary = "Пользователь ", description = "Редактировать созданные им заявки в статусе «черновик».")
     ResponseEntity<RequestDto> update(@RequestBody RequestDto requestDto);
 
     @GetMapping("/{id}/get")
-    //  @PreAuthorize("hasAuthority('user:read')")
+    @PreAuthorize("hasAuthority('user:read')")
     @Operation(summary = "Пользователь ", description = "Отправлять заявки на рассмотрение оператору.")
     ResponseEntity<RequestDto> submitForReviewRequest(@PathVariable Long id);
 

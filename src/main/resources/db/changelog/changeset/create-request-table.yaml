@@ -1,0 +1,40 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-request
+      author: Kovtunov V
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                 name: header
+                 type: varchar(50)
+                 constraints:
+                 nullable: false
+              - column:
+                  name: description
+                  type: varchar(5000)
+                  constraints:
+                  nullable: false
+              - column:
+                  name: users_id
+                  type: bigint
+                  constraints:
+                    foreignKeyName: id
+              - column:
+                  name: status_request
+                  type: varchar(100)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_at
+                  type: varchar(100)
+                  constraints:
+                  nullable: false
+
