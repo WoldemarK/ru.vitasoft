@@ -7,8 +7,6 @@ import ru.vitasoft.ru.vitasoft.controller.api.RequestControllerApi;
 import ru.vitasoft.ru.vitasoft.dto.RequestDto;
 import ru.vitasoft.ru.vitasoft.service.RequestService;
 
-import java.util.List;
-
 @RestController
 @RequiredArgsConstructor
 public class RequestController implements RequestControllerApi {
@@ -20,8 +18,8 @@ public class RequestController implements RequestControllerApi {
     }
 
     @Override
-    public ResponseEntity<List<RequestDto>> viewingApplications(Long id) {
-        return null;
+    public RequestDto viewingApplications(Long id) {
+        return requestService.viewingApplications(id);
     }
 
     @Override

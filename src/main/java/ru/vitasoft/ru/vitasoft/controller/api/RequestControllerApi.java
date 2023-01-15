@@ -7,8 +7,6 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import ru.vitasoft.ru.vitasoft.dto.RequestDto;
 
-import java.util.List;
-
 @RequestMapping("/api/request")
 @Tag(name = "Управление заявками", description = "Создание, поиск, получение.")
 public interface RequestControllerApi {
@@ -20,7 +18,7 @@ public interface RequestControllerApi {
     @GetMapping("/{id}")
      @PreAuthorize("hasAuthority('user:read')")
     @Operation(summary = "Пользователь ", description = "Просмотр всех им созданных заявок.")
-    ResponseEntity<List<RequestDto>> viewingApplications(@PathVariable("id") Long id);
+    RequestDto viewingApplications(@PathVariable("id") Long id);
 
     @PostMapping("/update")
     // @PreAuthorize("hasAuthority('user:write')")

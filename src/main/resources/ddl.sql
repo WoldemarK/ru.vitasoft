@@ -17,19 +17,14 @@ create table if not exists request
     status_request varchar(20)   not null,
     created_at     timestamp default now()
 );
-insert into users(name, password, email, role,status)
-values (
-           'admin','$2a$12$QyumFAO8XjRVPLoI0Z.piuoKbRH1f/7b37AcDgaXATuPKn2S5.zWe',
-           'admin@admin','ADMIN','ACTIVE'
-       );
-insert into users(name, password, email, role,status)
-values (
-           'user','$2a$12$lJrrNI//hbFoTgvSe3rxn.zAO6.mPpjvg/VcYjKmeRyrfEMugZYd.',
-           'user@mail.ru','USER','ACTIVE'
-       );
+insert into users(name, password, email, role, status)
+values ('admin', '$2a$12$/FMm4cg8zJ2220MT3gW99u..xMVnV5b5Uk0WGcu4Tw5QV6xJDUyTW',
+        'a@', 'ADMIN', 'ACTIVE');
+insert into users(name, password, email, role, status)
+values ('user', '$2a$12$/FMm4cg8zJ2220MT3gW99u..xMVnV5b5Uk0WGcu4Tw5QV6xJDUyTW',
+        'u@u', 'USER', 'ACTIVE');
 
-insert into users(name, password, email, role,status)
-values (
-           'operator','$2a$12$FdHPv7XGPJWVG20Dziuun.kk4V9PT2b2MyA8mm3JHNvUgV/vj9.xy',
-           'operator@mail.ru','OPERATOR','ACTIVE'
-       );
+insert into users(name, password, email, role, status)
+values ('operator', '$2a$12$/FMm4cg8zJ2220MT3gW99u..xMVnV5b5Uk0WGcu4Tw5QV6xJDUyTW',
+        'o@o', 'OPERATOR', 'ACTIVE');
+

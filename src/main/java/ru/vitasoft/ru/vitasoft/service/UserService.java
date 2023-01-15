@@ -10,10 +10,7 @@ import ru.vitasoft.ru.vitasoft.model.Role;
 import ru.vitasoft.ru.vitasoft.model.User;
 import ru.vitasoft.ru.vitasoft.repository.UserRepository;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -37,8 +34,8 @@ public class UserService {
         if (user.isPresent()) {
             Set<Role> roles = new HashSet<>();
             roles.add(Role.OPERATOR);
-            user.get().setRole(Role.OPERATOR);
-            // user = requestRepository.save(user.get());
+           // user.get().setRole((EnumSet<Role>) Collections.singleton(Role.OPERATOR));
+             user = Optional.of(userRepository.save(user.get()));
         }
 
         return userMapper.convertToUserFromUserDto(user.get());

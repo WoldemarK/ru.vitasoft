@@ -11,6 +11,8 @@ import ru.vitasoft.ru.vitasoft.repository.UserRepository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -24,9 +26,10 @@ public class RequestService {
         request = requestRepository.save(request);
         return requestMapper.convertToRequestDto(request);
     }
-    public List<RequestDto> viewingApplications(Long id) {
+    public RequestDto viewingApplications(Long id) {
         List<RequestDto> list = requestRepository.findByUser(userRepository.findById(id).get());
-        return new ArrayList<>(list);
+        return list.stream().findAny().orElseThrow(()->new AllException(""));
+
     }
 //
 //    public RequestDto update(RequestDto requestDto) {

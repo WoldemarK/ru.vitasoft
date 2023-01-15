@@ -5,7 +5,9 @@ import lombok.ToString;
 import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
+import java.util.EnumSet;
 import java.util.List;
+import java.util.Set;
 
 @Data
 @Entity
@@ -17,13 +19,15 @@ public class User {
     @Column(name = "name")
     private String name;
     @Column(name = "email")
-    private String email;;
+    private String email;
+    ;
 
     @Column(name = "password")
     private String password;
 
-    @Enumerated(value = EnumType.STRING)
+
     @Column(name = "role")
+    @Enumerated(value = EnumType.STRING)
     private Role role;
     @Enumerated(value = EnumType.STRING)
     @Column(name = "status")
@@ -31,6 +35,6 @@ public class User {
     @ToString.Exclude
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
     @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
-    private List<Request>requests;
+    private List<Request> requests;
 
 }
