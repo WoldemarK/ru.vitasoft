@@ -26,8 +26,5 @@ public class User {
     @Enumerated(value = EnumType.STRING)
     @Column(name = "status")
     private Status status;
-//    @Column(name = "status_requests")
-//    @Enumerated(EnumType.STRING)
-//    @ElementCollection(fetch = FetchType.EAGER)
-//    private Set<StatusRequest> statusRequests;
+
 }

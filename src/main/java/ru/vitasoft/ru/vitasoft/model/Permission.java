@@ -1,9 +1,9 @@
 package ru.vitasoft.ru.vitasoft.model;
 
 public enum Permission {
-    DEVELOPERS_READ("developers:read"),
-    DEVELOPERS_WRITE("developers:write");
-
+    USER_READ("user:read"),
+    USER_WRITE("user:write"),
+    USER_UPDATE("user:update");
     private final String permission;
 
     Permission(String permission) {
