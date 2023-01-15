@@ -1,8 +1,11 @@
 package ru.vitasoft.ru.vitasoft.model;
 
 import lombok.Data;
+import lombok.ToString;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @Entity
@@ -25,5 +28,9 @@ public class User {
     @Enumerated(value = EnumType.STRING)
     @Column(name = "status")
     private Status status;
+    @ToString.Exclude
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+    private List<Request>requests;
 
 }

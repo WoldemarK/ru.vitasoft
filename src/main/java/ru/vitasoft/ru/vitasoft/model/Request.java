@@ -25,7 +25,7 @@ public class Request {
     private String description;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "users_id",referencedColumnName = "id")
+    @JoinColumn(name = "users_id", referencedColumnName = "id")
     private User user;
 
     @Column(name = "status_request")

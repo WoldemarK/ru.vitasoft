@@ -1,14 +1,11 @@
 package ru.vitasoft.ru.vitasoft.controller;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import ru.vitasoft.ru.vitasoft.controller.api.AuthControllerApi;
 
 @Controller
-@RequestMapping("/auth")
-public class AuthController {
-
-    @GetMapping("/login")
+public class AuthController implements AuthControllerApi {
+    @Override
     public String getLoginPage() {
         return "login";
     }

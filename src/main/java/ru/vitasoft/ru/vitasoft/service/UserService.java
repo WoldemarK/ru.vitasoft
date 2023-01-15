@@ -6,13 +6,14 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.vitasoft.ru.vitasoft.dto.UserDto;
 import ru.vitasoft.ru.vitasoft.exception.AllException;
 import ru.vitasoft.ru.vitasoft.mapper.UserMapper;
-import ru.vitasoft.ru.vitasoft.model.Request;
 import ru.vitasoft.ru.vitasoft.model.Role;
 import ru.vitasoft.ru.vitasoft.model.User;
-import ru.vitasoft.ru.vitasoft.repository.RequestRepository;
 import ru.vitasoft.ru.vitasoft.repository.UserRepository;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -21,7 +22,6 @@ import java.util.stream.Collectors;
 public class UserService {
     private final UserRepository userRepository;
     private final UserMapper userMapper;
-    private final RequestRepository requestRepository;
 
     public Optional<List<UserDto>> findAll() {
         List<User> personList = userRepository.findAll();
