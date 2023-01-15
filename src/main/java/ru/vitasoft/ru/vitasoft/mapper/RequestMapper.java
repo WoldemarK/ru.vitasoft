@@ -17,7 +17,7 @@ public interface RequestMapper {
     @Mapping(source = "creation", target = "creation", dateFormat = "dd/MM/yyyy")
     Request convertToRequest(RequestDto personDto);
 
-    @Mapping(source = "userId", target = "person.id")
+    @Mapping(source = "userId", target = "user.id")
     @Mapping(source = "creation", target = "creation", dateFormat = "dd/MM/yyyy")
     void updateFromDto(RequestDto requestDto, @MappingTarget Request request);
 }

@@ -3,7 +3,6 @@ package ru.vitasoft.ru.vitasoft.model;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.util.Set;
 
 @Data
 @Entity
