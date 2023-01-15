@@ -5,11 +5,9 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import ru.vitasoft.ru.vitasoft.dto.UserDto;
+import ru.vitasoft.ru.vitasoft.model.User;
 
 import java.util.List;
 import java.util.Optional;
@@ -22,10 +20,14 @@ public interface UserControllerApi {
     @PreAuthorize("hasAuthority('user:write')")
     @Operation(summary = "Вывод ", description = "Позволяет вывести всех пользователей")
     Optional<List<UserDto>> getAll();
+    @GetMapping("/{id}")
+    @PreAuthorize("hasAuthority('user:write')")
+    @Operation(summary = "Вывод ", description = "Позволяет вывести пользователя по ID")
+    ResponseEntity<Optional<UserDto>> getByIdUsers(@Validated @PathVariable("id")Long id);
 
     @PostMapping("/admin/{id}")
     @PreAuthorize("hasAuthority('user:update')")
     @Operation(summary = "Добавление ", description = "Позволяет добавить пользователю роль оператора")
-    ResponseEntity<UserDto> addOperator(@Validated @PathVariable("id") Long id);
+    ResponseEntity<UserDto> addOperator(@Validated @RequestBody @PathVariable("id") Long id);
 }
 

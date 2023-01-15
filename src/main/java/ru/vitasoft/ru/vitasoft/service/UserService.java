@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.vitasoft.ru.vitasoft.dto.UserDto;
 import ru.vitasoft.ru.vitasoft.exception.AllException;
 import ru.vitasoft.ru.vitasoft.mapper.UserMapper;
+import ru.vitasoft.ru.vitasoft.model.Request;
 import ru.vitasoft.ru.vitasoft.model.Role;
 import ru.vitasoft.ru.vitasoft.model.User;
 import ru.vitasoft.ru.vitasoft.repository.RequestRepository;
@@ -37,9 +38,15 @@ public class UserService {
             Set<Role> roles = new HashSet<>();
             roles.add(Role.OPERATOR);
             user.get().setRole(Role.OPERATOR);
-           // user = requestRepository.save(user.get());
+            // user = requestRepository.save(user.get());
         }
 
         return userMapper.convertToUserFromUserDto(user.get());
+    }
+
+    public Optional<UserDto> getByIdUsers(Long id) {
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new AllException("По данному " + id + " пользователь не найден"));
+        return Optional.ofNullable(userMapper.convertToUserFromUserDto(user));
     }
 }
