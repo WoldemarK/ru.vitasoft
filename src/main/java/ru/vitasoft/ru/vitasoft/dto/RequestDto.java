@@ -18,7 +18,7 @@ public class RequestDto {
     @Schema(description = "Описание проблемы")
     private String description;
     @Schema(description = "ID Person")
-    private long personId;
+    private long userId;
     @Schema(description = "Статус заявки")
     private StatusRequest statusRequest;
 
