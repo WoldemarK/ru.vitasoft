@@ -27,4 +27,9 @@ public class RequestController implements RequestControllerApi {
     public ResponseEntity<RequestDto> submitForReviewRequest(Long id) {
         return ResponseEntity.ok(requestService.submitForReviewRequest(id));
     }
+
+    @Override
+    public RequestDto getAllRequestStatus() {
+        return requestService.getAllRequestStatus();
+    }
 }

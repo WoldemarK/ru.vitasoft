@@ -15,18 +15,18 @@ import java.util.Optional;
 @Tag(name = "Управление", description = "Администратор управляет правами доступа.")
 public interface UserControllerApi {
 
-    @GetMapping("/admin")
+    @GetMapping("/admin") // list
     @PreAuthorize("hasAuthority('user:write')")
     @Operation(summary = "Вывод ", description = "Позволяет вывести всех пользователей")
-    Optional<List<UserDto>> getAll();
+    ResponseEntity<List<UserDto>> getAll();
     @GetMapping("/{id}")
     @PreAuthorize("hasAuthority('user:write')")
     @Operation(summary = "Вывод ", description = "Позволяет вывести пользователя по ID")
-    ResponseEntity<Optional<UserDto>> getByIdUsers(@Validated @PathVariable("id")Long id);
+    ResponseEntity<UserDto> getByIdUsers(@Validated @PathVariable("id")Long id);
 
-    @PostMapping("/admin/{id}")
+    @PostMapping("/admin/{id}") // /ID/role
     @PreAuthorize("hasAuthority('user:update')")
     @Operation(summary = "Добавление ", description = "Позволяет добавить пользователю роль оператора")
-    ResponseEntity<UserDto> addOperator(@Validated @RequestBody @PathVariable("id") Long id);
+    ResponseEntity<UserDto> addOperator(@PathVariable("id") Long id);
 }
 

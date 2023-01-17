@@ -20,30 +20,28 @@ public class UserService {
     private final UserRepository userRepository;
     private final UserMapper userMapper;
 
-    public Optional<List<UserDto>> findAll() {
+    public List<UserDto> findAll() {
         List<User> personList = userRepository.findAll();
 
-        return Optional.ofNullable(Optional.of(personList.stream()
-                        .map(userMapper::convertToUserFromUserDto)
-                        .collect(Collectors.toList()))
-                .orElseThrow(() -> new AllException(("Ошибка вызова, обратитесь к администратору"))));
+        return personList.stream()
+                .map(userMapper::convertToUserFromUserDto)
+                .collect(Collectors.toList());
+
     }
 
-    public UserDto assignOperaRightsToUser(Long id) {
+    public UserDto assignOperatorRoleToUser(Long id) {
         Optional<User> user = userRepository.findById(id);
         if (user.isPresent()) {
-            Set<Role> roles = new HashSet<>();
-            roles.add(Role.OPERATOR);
-           // user.get().setRole((EnumSet<Role>) Collections.singleton(Role.OPERATOR));
-             user = Optional.of(userRepository.save(user.get()));
+            user.get().setRole(Role.OPERATOR); // save and update
+            user = Optional.of(userRepository.save(user.get()));
         }
 
         return userMapper.convertToUserFromUserDto(user.get());
     }
 
-    public Optional<UserDto> getByIdUsers(Long id) {
+    public UserDto getByIdUsers(Long id) {
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new AllException("По данному " + id + " пользователь не найден"));
-        return Optional.ofNullable(userMapper.convertToUserFromUserDto(user));
+        return userMapper.convertToUserFromUserDto(user);
     }
 }

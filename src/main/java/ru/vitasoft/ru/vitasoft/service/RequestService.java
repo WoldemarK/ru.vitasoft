@@ -29,7 +29,8 @@ public class RequestService {
     }
 
     public RequestDto viewingApplications(Long id) {
-        List<RequestDto> list = requestRepository.findByUser(userRepository.findById(id).get());
+        List<RequestDto> list = (List<RequestDto>) requestRepository
+                .findByUser(userRepository.findById(id).get());
         return list.stream().findAny().orElseThrow(() -> new AllException(""));
 
     }
@@ -52,24 +53,13 @@ public class RequestService {
         }
         return requestMapper.convertToRequestDto(request);
     }
-//
-//    public RequestDto getAllRequestStatus() {
-//        List<Request> request = requestRepository.findAllByStatus(Status.SENT);
-//        return (RequestDto) (RequestDto) request
-//                .stream()
-//                .map(requestMapper::convertToRequestDto)
-//                .collect(Collectors.toList());
-//    }
 
-//    public RequestDto s(Long id, String status) {
-//
-//        Optional<Request> request = Optional.ofNullable(requestRepository.findById(id)
-//                .orElseThrow(() -> new AllException("В метеде " + id + ("Не найден"))));
-//
-//        if (request.isPresent() & (request.equals(Status.ACCEPTED) || request.equals(Status.REJECTED))) {
-//            request.get().setStatus(request);
-//            request = Optional.of(requestRepository.save(request.get()));
-//        }
-//        return requestMapper.convertToRequestDto(request);
-//    }
+    public RequestDto getAllRequestStatus() {
+        List<Request> request = requestRepository.findAllByStatusRequest(StatusRequest.SENT);
+        return (RequestDto) request
+                .stream()
+                .map(requestMapper::convertToRequestDto)
+                .collect(Collectors.toList());
+    }
+
 }
