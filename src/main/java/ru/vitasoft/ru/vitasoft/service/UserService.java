@@ -32,7 +32,7 @@ public class UserService {
     public UserDto assignOperatorRoleToUser(Long id) {
         Optional<User> user = userRepository.findById(id);
         if (user.isPresent()) {
-            user.get().setRole(Role.OPERATOR); // save and update
+            user.get().setRole(Role.OPERATOR);
             user = Optional.of(userRepository.save(user.get()));
         }
 

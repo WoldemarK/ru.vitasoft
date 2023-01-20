@@ -9,10 +9,7 @@ import ru.vitasoft.ru.vitasoft.model.Request;
 import ru.vitasoft.ru.vitasoft.model.StatusRequest;
 import ru.vitasoft.ru.vitasoft.repository.RequestRepository;
 import ru.vitasoft.ru.vitasoft.repository.UserRepository;
-
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service

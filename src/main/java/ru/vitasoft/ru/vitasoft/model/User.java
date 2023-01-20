@@ -1,5 +1,6 @@
 package ru.vitasoft.ru.vitasoft.model;
 
+import lombok.Builder;
 import lombok.Data;
 import lombok.ToString;
 import org.hibernate.annotations.Cascade;
@@ -20,12 +21,8 @@ public class User {
     private String name;
     @Column(name = "email")
     private String email;
-    ;
-
     @Column(name = "password")
     private String password;
-
-
     @Column(name = "role")
     @Enumerated(value = EnumType.STRING)
     private Role role;
